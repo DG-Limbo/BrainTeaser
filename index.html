@@ -5,6 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Brainteaser: a daily 5-minute workout for your brain. Spot the AI-written text, then solve three logic puzzles.">
 <title>Brainteaser</title>
+<link rel="canonical" href="https://dg-limbo.github.io/BrainTeaser/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#E8EBEF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1424" media="(prefers-color-scheme: dark)">
+<!-- Link preview (WhatsApp, iMessage, Instagram DMs, Telegram, Discord, X, LinkedIn) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Brainteaser">
+<meta property="og:url" content="https://dg-limbo.github.io/BrainTeaser/">
+<meta property="og:title" content="Brainteaser · a daily workout for your brain">
+<meta property="og:description" content="Spot the AI-written text, then solve three logic puzzles. Six reps, about five minutes, a new workout every day.">
+<meta property="og:image" content="https://dg-limbo.github.io/BrainTeaser/og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Brainteaser wordmark above a barbell loaded with scoring plates, and the tagline: a daily workout for your brain.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Brainteaser · a daily workout for your brain">
+<meta name="twitter:description" content="Spot the AI-written text, then solve three logic puzzles. About five minutes a day.">
+<meta name="twitter:image" content="https://dg-limbo.github.io/BrainTeaser/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Libre+Franklin:wght@400;500;600;700&family=Literata:ital,opsz,wght@1,7..72,400&display=swap">
 <style>
@@ -96,7 +116,7 @@ button{font:inherit;cursor:pointer}
 .stat{display:flex;flex-direction:column;gap:2px;padding:12px;border:1.5px solid var(--line);border-radius:10px;min-width:0}
 .stat .v{font-family:var(--display);font-weight:900;font-size:30px;line-height:1;font-variant-numeric:tabular-nums}
 .stat .l{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.share{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:15px;white-space:pre;padding:14px;border-radius:10px;background:var(--chalk);overflow-x:auto;margin:0}
+.share{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:15px;white-space:pre-wrap;overflow-wrap:anywhere;padding:14px;border-radius:10px;background:var(--chalk);overflow-x:auto;margin:0}
 .row{display:flex;gap:10px;flex-wrap:wrap}
 .row > *{flex:1 1 160px}
 .locked{display:flex;flex-direction:column;gap:10px;border-top:1.5px dashed var(--line);padding-top:18px}
@@ -155,13 +175,40 @@ footer{font-size:13px;color:var(--muted);text-align:center;max-width:52ch;margin
 .mtop{display:flex;justify-content:space-between;gap:12px;font-size:14px}
 .mbar{height:10px;border-radius:5px;background:var(--chalk);overflow:hidden}
 .mbar span{display:block;height:100%;background:var(--accent);border-radius:5px}
+/* How to play */
+.brand{display:flex;align-items:center;gap:10px}
+.helpbtn{appearance:none;width:30px;height:30px;border-radius:999px;border:2px solid var(--line);background:transparent;color:var(--muted);font-weight:700;font-size:16px;line-height:1;padding:0;display:grid;place-items:center;flex:none}
+.helpbtn:hover{border-color:var(--ink);color:var(--ink)}
+.linkbtn{appearance:none;border:0;background:none;padding:0;color:var(--accent);font-weight:700;font-size:15px;text-decoration:underline;text-underline-offset:3px;align-self:flex-start}
+dialog.how{width:min(560px, calc(100% - 32px));max-height:calc(100dvh - 32px);padding:0;border:1.5px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink)}
+dialog.how::backdrop{background:rgba(14,20,36,.55)}
+.how .in{display:flex;flex-direction:column;gap:16px;padding:24px}
+.how .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.how .x{appearance:none;border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;width:36px;height:36px;font-size:20px;line-height:1;flex:none}
+.how .x:hover{border-color:var(--ink)}
+.how ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.how ol > li{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:14px 0;border-bottom:1.5px dashed var(--line)}
+.how ol > li:last-child{border-bottom:0}
+.how .num{font-family:var(--display);font-weight:900;font-size:28px;line-height:1;color:var(--accent)}
+.how h3{margin:0 0 4px;font-size:16px;font-weight:700}
+.how li p + p, .how li p + ul{margin-top:6px}
+.how ul.fmt{margin:6px 0 0;padding-left:18px;color:var(--muted)}
+.how ul.fmt b{color:var(--ink)}
+.how .plates{display:flex;align-items:flex-end;gap:6px;margin-top:8px}
+.how .plates .plate{width:36px;cursor:default}
+.how .plates .plate.d1{height:32px} .how .plates .plate.d2{height:42px} .how .plates .plate.d3{height:52px}
+.how .fine{font-size:13px;color:var(--muted)}
+@media (max-width:420px){ .how .in{padding:18px} }
 </style>
 </head>
 <body>
 
 <div class="wrap">
   <header>
-    <div class="mark">Brain<span>teaser</span></div>
+    <div class="brand">
+      <div class="mark">Brain<span>teaser</span></div>
+      <button class="helpbtn" id="howBtn" aria-haspopup="dialog" aria-controls="howto" aria-label="How to play" title="How to play">?</button>
+    </div>
     <div class="meta">
       <span class="chip" id="dayChip">Workout #1</span>
       <span class="chip hot" id="streakChip">Streak 0</span>
@@ -175,8 +222,50 @@ footer{font-size:13px;color:var(--muted);text-align:center;max-width:52ch;margin
 
   <main class="card" id="screen" aria-live="polite"></main>
 
-  <footer>Human excerpts are real text published before 2023 by US government agencies (NIH, NASA, NOAA, NIST, USGS, BLS, EIA, CDC, Census Bureau) or from public-domain classics. AI excerpts were written by an AI for this game, and any facts in them are made up. Your streak and stats stay in this browser.</footer>
+  <footer>Human excerpts are real text published before December 2022 by US government agencies (NIH, NASA, NOAA, NIST, USGS, BLS, EIA, CDC, Census Bureau) or from public-domain classics. AI excerpts were written by an AI for this game, and any facts in them are made up. Your streak and stats stay in this browser.</footer>
 </div>
+
+<dialog class="how" id="howto" aria-labelledby="howTitle">
+  <div class="in">
+    <div class="top">
+      <div>
+        <span class="eyebrow">5 minutes a day</span>
+        <h2 id="howTitle">How to play</h2>
+      </div>
+      <button class="x" id="howClose" aria-label="Close">×</button>
+    </div>
+    <ol>
+      <li><span class="num">1</span><div>
+        <h3>Set 1 · Real or AI?</h3>
+        <p class="muted">Three reps. Each shows text written by a person, by an AI, or both. One of three formats:</p>
+        <ul class="fmt">
+          <li><b>Human or AI?</b> One text. Who wrote it?</li>
+          <li><b>Which is human?</b> Two texts on the same topic. Pick the human one.</li>
+          <li><b>Find the AI sentence.</b> Real sentences from one source, with one AI line slipped in.</li>
+        </ul>
+      </div></li>
+      <li><span class="num">2</span><div>
+        <h3>Set 2 · Logic</h3>
+        <p class="muted">Three puzzles, each from a different family: rotation, folding, solids, mechanisms, clocks &amp; mirrors, directions, deduction, patterns, mental math and memory. No pen, no calculator.</p>
+      </div></li>
+      <li><span class="num">3</span><div>
+        <h3>Scoring</h3>
+        <p class="muted">Each set goes light, medium, heavy. A right answer lifts the plate's points; a miss scores 0. Max 12 a day. The clock only counts toward your personal best, never against your score.</p>
+        <div class="plates" aria-hidden="true"><span class="plate d1">1×</span><span class="plate d2">2×</span><span class="plate d3">3×</span></div>
+      </div></li>
+      <li><span class="num">4</span><div>
+        <h3>Streaks</h3>
+        <p class="muted">Play every day to build a streak. You start with one streak freeze ❄ that covers a missed day, and earn another every 7 days (hold up to 2).</p>
+      </div></li>
+      <li><span class="num">5</span><div>
+        <h3>Share</h3>
+        <p class="muted">When you finish, copy your result. It shows your score and green/red reps, never the answers.</p>
+      </div></li>
+    </ol>
+    <p class="fine">Human texts are real excerpts published before December 2022 by US government agencies, or public-domain classics, each linked to its source. AI texts were written for this game; any facts in them are made up. Everyone gets the same workout, and a new one unlocks at midnight your time. No account: your streak and stats stay in this browser.</p>
+    <button class="primary" id="howGo">Got it</button>
+  </div>
+</dialog>
 
 <script src="js/content_roa.js"></script>
 <script src="js/content_logic.js"></script>
