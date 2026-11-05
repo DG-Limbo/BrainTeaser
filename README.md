@@ -5,7 +5,8 @@ A daily 5-minute workout for your brain: one set of "Real or AI?" reps, one set 
 Live at: https://dg-limbo.github.io/BrainTeaser/
 
 ## Files
-- `index.html` – page layout and styles
+- `index.html` – page layout, styles, How to play dialog and link-preview tags
+- `og.png` – link preview image (1200×630); `favicon.svg`, `apple-touch-icon.png` – icons
 - `js/content_roa.js` – Real or AI library: human excerpts (`H`, with sources in `SRC`), AI singles, pairs, paragraphs
 - `js/content_logic.js` – logic puzzle library, grouped into 10 families
 - `js/generators.js` – puzzles generated fresh each day (rotation, memory, clock angles, directions, patterns, mental math)

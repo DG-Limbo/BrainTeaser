@@ -124,8 +124,10 @@ function startScreen(){
       <li><span><b>Set 1 · Real or AI?</b><br><span class="muted">Spot machine-written research and news.</span></span><span class="muted">3 reps</span></li>
       <li><span><b>Set 2 · Logic</b><br><span class="muted">A different mix of puzzles every day.</span></span><span class="muted">3 reps</span></li>
     </ul>
-    <button class="primary" id="go">Start set 1</button>`;
+    <button class="primary" id="go">Start set 1</button>
+    <button class="linkbtn" id="howLink">New here? How to play</button>`;
   $("#go").onclick = () => { state.phase = "rep"; state.idx = 0; save(); drawBar(); repScreen(); };
+  $("#howLink").onclick = openHow;
 }
 
 function breakScreen(){
@@ -326,10 +328,12 @@ function finish(){
   header(); drawBar(); resultScreen();
 }
 
+const SITE_URL = "https://dg-limbo.github.io/BrainTeaser/";
 function shareText(){
   const g = (a, b) => state.answers.slice(a, b).map(x => x ? "🟩" : "🟥").join("");
   const time = state.times.reduce((a, b) => a + (b || 0), 0);
-  return `Brainteaser #${DAY} 🏋️ ${kgOf(0,6)}/12 · ${mmss(time)}\nReal or AI ${g(0,3)}\nLogic      ${g(3,6)}`;
+  // the link makes chat apps show the preview card, so friends can tap straight in
+  return `Brainteaser #${DAY} 🏋️ ${kgOf(0,6)}/12 · ${mmss(time)}\nReal or AI ${g(0,3)}\nLogic      ${g(3,6)}\n${SITE_URL}`;
 }
 
 function profileHtml(){
@@ -408,8 +412,27 @@ function countdown(){
   cdT = setTimeout(countdown, 30000);
 }
 
+/* ---------- How to play ---------- */
+const how = $("#howto");
+function openHow(){
+  if(how.open) return;
+  if(typeof how.showModal === "function") how.showModal(); else how.setAttribute("open", "");
+  $("#howGo").focus({preventScroll:true});
+}
+function closeHow(){
+  if(typeof how.close === "function") how.close(); else how.removeAttribute("open");
+  store.set("bt4-howto-seen", true);
+}
+how.addEventListener("close", () => store.set("bt4-howto-seen", true));
+$("#howBtn").onclick = openHow;
+$("#howClose").onclick = closeHow;
+$("#howGo").onclick = closeHow;
+how.addEventListener("click", e => { if(e.target === how) closeHow(); }); // tap outside to close
+
 /* ---------- Boot ---------- */
 header(); drawBar();
+// first visit: show the rules once, the way most daily games do
+if(!stats.played && state.phase === "start" && !store.get("bt4-howto-seen", false)) openHow();
 if(state.phase === "done") resultScreen();
 else if(state.phase === "break") breakScreen();
 else if(state.phase === "rep") repScreen();
