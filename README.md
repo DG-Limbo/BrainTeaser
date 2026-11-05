@@ -2,7 +2,7 @@
 
 A daily 5-minute workout for your brain: one set of "Real or AI?" reps, one set of logic reps, each going light (1×) → medium (2×) → heavy (3×).
 
-Live at: https://dg-limbo.github.io/brainteaser
+Live at: https://dg-limbo.github.io/BrainTeaser/
 
 ## Files
 - `index.html` – page layout and styles
